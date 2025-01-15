@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    {% if form %}
+    <form action="{% url "post:post_create" %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="작성">
+    </form>
+    {% else %}
+    <form action="{% url "post:post_update" post.pk %}" method="POST">
+        {% csrf_token %}
+        {{posts.as_p}}
+        <input type="submit" value="수정">
+    </form>
+    
+    {% endif %}
+{% endblock content %}

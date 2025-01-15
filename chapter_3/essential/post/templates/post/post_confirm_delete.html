@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<H1>정말 삭제하시겠습니까?</H1>
+<h2>
+    <form action="{% url "post:post_delete" post.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="예">
+    </form>
+</h2>
+<h2>
+<a href="{% url "post:post_detail" post.pk %}"><input type="submit" value="아니요"></a>
+</h2>
+
+{% endblock content %}
