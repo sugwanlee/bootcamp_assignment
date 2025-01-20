@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{% url "post:post_list" %}">글 목록보기</a>
+    <br>
+    <h2>제목 : {{post.title}} </h2>
+    <br>
+    <h3>내용</h3> <p>{{ post.content|linebreaksbr }}</p>
+    {% if user == post.author %}
+        <a href="{% url "post:post_update" post.pk %}">수정</a>
+        <a href="{% url "post:post_delete" post.pk %}">삭제</a>
+    {% endif %}
+    
+{% endblock content %}

@@ -5,9 +5,55 @@
     <h2>제목 : {{post.title}} </h2>
     <br>
     <h3>내용</h3> <p>{{ post.content|linebreaksbr }}</p>
+    <form action="{% url "post:post_like" post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if liked %}
+            <button class="btn btn-link text-danger">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+        {% else %}
+            <button class="btn btn-link text-danger">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        {% endif %}
+        {{ post.like.count }}
+    </form>
+        
     {% if user == post.author %}
         <a href="{% url "post:post_update" post.pk %}">수정</a>
         <a href="{% url "post:post_delete" post.pk %}">삭제</a>
+    {% endif %}
+
+    <hr>
+    댓글
+    <ul>
+        {% for comment in post.comments.all %}
+        <li>{{comment.content}} : {{comment.author}}
+            {% if comment.author == user %}
+            <form action="{% url "post:comment_update" post.pk comment.pk %}" methode="GET">
+                <input type="submit" value="수정">
+            </form>
+            <form action="{% url "post:comment_delete" comment.pk %}" methode="POST">
+                <input type="submit" value="삭제">
+            </form>
+            {% endif %}
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+    댓글 작성
+    {% if comment_form %}
+    <form action="{% url "post:comment_create" post.pk %}" method="POST">
+        {% csrf_token %}
+        {{comment_form.as_p}}
+        <input type="submit" value="작성">
+    </form>
+    {% else %}
+    <form action="{% url "post:comment_update" post.pk comment_pk %}" method="POST">
+        {% csrf_token %}
+        {{comment_update_form.as_p}}
+        <input type="submit" value="작성">
+    </form>
     {% endif %}
     
 {% endblock content %}

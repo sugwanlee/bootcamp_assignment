@@ -11,10 +11,7 @@
     <div class="">
         {% if request.user.is_authenticated %}
             <h3>안녕하세요, {{ user }}님</h3>
-            <form action="{% url 'user:user_profile' user.pk %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" value="프로필">
-            </form>
+                <a href="{% url "user:user_profile" %}"><input type="submit" value="프로필"></a>
             <form action="{% url 'user:logout' %}" method="POST">
                 {% csrf_token %}
                 <input type="submit" value="로그아웃">
