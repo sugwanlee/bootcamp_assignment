@@ -82,7 +82,7 @@
         ```
         
     - template: `user/login.html`
-    ![Image](https://github.com/user-attachments/assets/87ca29e0-bd88-4711-b53f-9bf463656066)
+        ![Image](https://github.com/user-attachments/assets/87ca29e0-bd88-4711-b53f-9bf463656066)
 
 
     <br>
@@ -117,7 +117,7 @@
         ```
 
     - template: `user/profile.html`
-    ![Image](https://github.com/user-attachments/assets/7d949399-09e4-4dbf-b6d6-8046c34207ab)
+        ![Image](https://github.com/user-attachments/assets/7d949399-09e4-4dbf-b6d6-8046c34207ab)
 
 <br>
 
