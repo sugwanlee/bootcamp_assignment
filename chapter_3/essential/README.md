@@ -80,6 +80,7 @@
             # 필요한 데이터를 담아서 응답
             return render(request, "user/login.html", context)
         ```
+        
     - template: `user/login.html`
     ![Image](https://github.com/user-attachments/assets/87ca29e0-bd88-4711-b53f-9bf463656066)
 
@@ -221,6 +222,7 @@
                 # 필요한 데이터를 담아서 응답
                 return render(request, "post/post_form.html", context)
             ```
+            
         - template: `post/post_form.html`
         ![Image](https://github.com/user-attachments/assets/84cd2f7c-cba1-43bb-8c6c-3060aabb0ed7)
 
