@@ -6,12 +6,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .serializers import PostSerializer, CommentSerializer
 
-# Create your views here.
+
 
 class PostListView(APIView):
 
+    # 인증되지 않은 유저가 접근하면 401에러를 반환
     permission_classes = [IsAuthenticated]
 
+    
     def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)

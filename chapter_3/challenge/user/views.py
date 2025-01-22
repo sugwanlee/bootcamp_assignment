@@ -14,8 +14,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
-
 class SignupView(APIView):
         
     def post(self, request):
@@ -46,3 +44,10 @@ class ProfileView(APIView):
         profile = CustomUser.objects.get(pk=request.user.pk)
         serializer = UserSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request):
+        profile = CustomUser.objects.get(pk=request.user.pk)
+        serializer = UserSerializer(profile, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

@@ -80,21 +80,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# postgreSQL로 DB변경
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'challenge_db',
+        'USER': 'dltnrhks1',
+        'PASSWORD' : 'sugwan1599',
+        'HOST' : 'localhost',
+        'PORT' :'',
     }
 }
 
+# Customuser를 기본 유저모델로 설정
 AUTH_USER_MODEL = "user.customuser"
 
+# drf 인증 설정정
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }
 
+# 토큰 유효기간, 발급 방식 설정정
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),

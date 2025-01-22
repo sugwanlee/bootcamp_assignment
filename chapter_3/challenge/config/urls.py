@@ -20,9 +20,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    # 관리자 페이지 url
     path('admin/', admin.site.urls, name="admin"),
+    # url 분기처리
     path('user/', include("user.urls")),
     path('post/', include("post.urls")),
 ]
+# 이미지 구현을 위한 url
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

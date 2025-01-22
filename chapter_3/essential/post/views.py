@@ -128,46 +128,71 @@ def post_like(request, pk):
         # 로그인 페이지 로직 실행
         return redirect("user:login")
     
-
+# "POST" 요청만 허용
 @require_POST
 def comment_create(request, pk):
+    # 사용자가 로그인 중일 때
     if request.user.is_authenticated:
+        # 게시글 가져오기
         post = Post.objects.get(pk=pk)
+        # 코멘트 폼에 댓글정보 넣기
         form = CommentForm(request.POST)
+        # 유효성 검사
         if form.is_valid():
+            # 데이터베이스에 적용 전 정보로 객체 생성
             comment = form.save(commit=False)
+            # 관계 필드정보 넣어주기
             comment.post = post
             comment.author = request.user
+            # 데이터베이스에 적용
             comment.save()
+            # 게시물 페이지 로직 실행
             return redirect("post:post_detail", pk)
     else:
+        # 로그인 페이지 로직 실행
         return redirect("user:login")
 
 
 def comment_update(request ,post_pk ,comment_pk):
+    # 수정할 코멘트의 게시물 가져오기
     post = Post.objects.get(pk=post_pk)
+    # 코멘트 가져오기
     comment = Comment.objects.get(pk=comment_pk)
-    if comment.author == request.user:    
+    # 코멘트 작성자가 현재 유저랑 일치 할 때
+    if comment.author == request.user:
         if request.method == "POST":
+            # 수정할 정보 객체를 생성
             form = CommentForm(request.POST, instance=comment)
+            # 유효성 검사
             if form.is_valid():
+                # 데이터베이스에 적용 전 정보로 객체 생성
                 updated_comment = form.save(commit=False)
+                # 관계 필드정보 넣어주기
                 updated_comment.author = request.user
                 updated_comment.post = post
+                # 데이터베이스에 적용
                 updated_comment.save()
+                # 게시물 페이지 로직 실행
                 return redirect("post:post_detail", post_pk)
         else:
+            # 수정할 원래 댓글내용을 객체로 생성
             comment_update_form = CommentForm(instance=comment)
+            # 상세 페이지에 필요한 정보를 컨텍스트에 담음
             context = {
                 "post" : post,
                 "comment_update_form" : comment_update_form,
                 "comment_pk" : comment_pk
             }
+            # 필요한 데이터를 담아서 응답
             return render(request, "post/post_detail.html", context)
         
 
 def comment_delete(request, comment_pk):
+    # 삭제할 코멘트 가져오기
     comment = Comment.objects.get(pk=comment_pk)
+    # 작성자와 현재 유저가 같으면
     if comment.author == request.user:
+        # 삭제
         comment.delete()
+        # 게시물 페이지 로직 실행
         return redirect("post:post_detail", comment.post_id)
