@@ -24,7 +24,7 @@ class SignupView(APIView):
         if serializer.is_valid(raise_exception=True):
             # 데이터베이스의 적용 후 반환값을 user에 저장
             user = serializer.save()
-            # 메세지를 json으로 직렬화 후 응답
+            # 메세지를 json으로 형식변환 후 응답
             return Response(
                 {"message": "User created successfully", "user_id": user.id},
                 status=status.HTTP_201_CREATED,
@@ -47,12 +47,12 @@ class LogoutView(APIView):
             token = RefreshToken(Refresh_token)
             # 토큰을 블랙리스트 데이터베이스에 추가
             token.blacklist()
-            # 메세지 json형식으로 직렬화 후 응답
+            # 메세지 json형식으로 형식변환 후 응답
             return Response(
                 {"detail": "Successfully logged out."}, status=status.HTTP_200_OK
             )
         else:
-            # 메세지 json형식으로 직렬화 후 응답
+            # 메세지 json형식으로 형식변환 후 응답
             return Response(
                 {"detail": "No token found."}, status=status.HTTP_400_BAD_REQUEST
             )
@@ -68,7 +68,7 @@ class ProfileView(APIView):
         profile = CustomUser.objects.get(pk=request.user.pk)
         # 시리얼라이저 객체 생성
         serializer = UserSerializer(profile)
-        # data를 json으로 직렬화 후 응답
+        # data를 json으로 형식변환 후 응답
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
@@ -80,5 +80,5 @@ class ProfileView(APIView):
         if serializer.is_valid(raise_exception=True):
             # 데이터베이스에 적용
             serializer.save()
-            # data를 json으로 직렬화 후 응답
+            # data를 json으로 형식변환 후 응답
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

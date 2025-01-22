@@ -31,6 +31,7 @@ class PostSerializer(serializers.ModelSerializer):
         return CommentSerializer(comments, many=True).data
 
 
+
 class CommentSerializer(serializers.ModelSerializer):
 
     # class Meta 오버라이딩

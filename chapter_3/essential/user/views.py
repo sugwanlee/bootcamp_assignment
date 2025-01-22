@@ -33,7 +33,7 @@ def signup(request):
 @require_http_methods(["GET", "POST"])
 def login(request):
     if request.method == "POST":
-        # 사용자 입력 데이터 검증(data인자)
+        # 사용자 입력 데이터 검증 폼 생성
         form = AuthenticationForm(data=request.POST)
         # 유효성 검사
         if form.is_valid():

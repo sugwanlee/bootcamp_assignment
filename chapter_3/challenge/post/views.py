@@ -22,7 +22,7 @@ class PostListView(APIView):
         for post in data:
             post.pop('like_count', None)
             post.pop('comments', None)
-        # data를 json파일로 직렬화해서 응답
+        # data를 json파일로 형식변환 후 응답
         return Response(data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -32,7 +32,7 @@ class PostListView(APIView):
         if serializer.is_valid(raise_exception=True):
             # author 필드값을 채워준 뒤 데이터베이스에 저장
             serializer.save(author=request.user)
-            # data를 json파일로 직렬화해서 응답
+            # data를 json파일로 형식변환 후 응답
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -50,7 +50,7 @@ class PostDetailView(APIView):
         post = self.get_object(pk)
         # 시리얼라이저 객체 생성
         Serializer = PostSerializer(post)
-        # data를 json파일로 직렬화해서 응답
+        # data를 json파일로 형식변환 후 응답
         return Response(Serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
@@ -64,7 +64,7 @@ class PostDetailView(APIView):
             if Serializer.is_valid(raise_exception=True):
                 # 데이터베이스 적용
                 Serializer.save()
-                # data를 json파일로 직렬화해서 응답
+                # data를 json파일로 형식변환 후 응답
                 return Response(Serializer.data, status=status.HTTP_202_ACCEPTED)
         else:
             # 일치하지 않으면 403에러 반환
@@ -79,7 +79,7 @@ class PostDetailView(APIView):
             post.delete()
             # 메세지를 전달하기 위해 딕셔너리 생성
             data = {"result": f"{post.title} is deleted"}
-            # data를 json으로 직렬화해서 응답
+            # data를 json으로 형식변환 후 응답
             return Response(data, status=status.HTTP_204_NO_CONTENT)
         else:
             # 일치하지 않으면 403에러 반환
@@ -98,7 +98,7 @@ class PostLikeView(APIView):
         if post.like.filter(pk=request.user.pk).exists():
             # 관계형 필드에서 유저 삭제
             post.like.remove(request.user)
-            # 메세지를 json으로 직렬화 후 응답
+            # 메세지를 json으로 형식변환환 후 응답
             return Response(
                 {"message": "게시물에 좋아요를 취소하였습니다"},
                 status=status.HTTP_200_OK,
@@ -106,7 +106,7 @@ class PostLikeView(APIView):
         else:
             # 관계형 필드에 유저가 없다면 유저 추가
             post.like.add(request.user)
-            # 메세지를 json으로 직렬화 후 응답
+            # 메세지를 json으로 형식변환 후 응답
             return Response(
                 {"message": "게시물에 좋아요를 했습니다!"}, status=status.HTTP_200_OK
             )
@@ -127,7 +127,7 @@ class CommentView(APIView):
         if serializer.is_valid(raise_exception=True):
             # 리드온리인 관계형 필드에 필요한 값을 pk값과 request.user를 이용해 적절한 데이터를 넣어주기
             serializer.save(author=request.user, post=post)
-            # data를 json으로 직렬화 후 응답
+            # data를 json으로 형식변환 후 응답
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     # PUT요청일 때는 Comment테이블의pk 값을 가져온다
@@ -142,7 +142,7 @@ class CommentView(APIView):
             if serializer.is_valid(raise_exception=True):
                 # 데이터베이스에 적용
                 serializer.save()
-                # data를 json으로 직렬화 후 응답 
+                # data를 json으로 형식변환 후 응답 
                 return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         else:
             # 유저가 다르면 403에러를 반환
@@ -158,7 +158,7 @@ class CommentView(APIView):
             comment.delete()
             # 메세지를 딕셔너리 형태로 생성
             data = {"result": f"{comment.post.title}의 댓글이 삭제되었습니다."}
-            # data를 json으로 직렬화 후 응답
+            # data를 json으로 형식변환 후 응답
             return Response(data, status=status.HTTP_204_NO_CONTENT)
         else:
             # 유저가 다르면 403에러를 반환
