@@ -56,8 +56,8 @@
     <br>
 
     2. 로그인
+    
     - view: `login` or `LoginView`
-
         ```py
         # "GET", "POST" 요청만 허용
         @require_http_methods(["GET", "POST"])
@@ -89,7 +89,6 @@
 
     3. 로그아웃
     - view: `logout` or `LogoutView`
-
         ```py
         @require_POST
         def logout(request):
@@ -104,7 +103,6 @@
 
 3. 사용자 프로필 페이지 구현
     - view: `user_profile` or `UserProfileView`
-
         ```py
         # "GET" 요청 일때만 허용
         @require_GET
@@ -222,7 +220,7 @@
                 # 필요한 데이터를 담아서 응답
                 return render(request, "post/post_form.html", context)
             ```
-            
+
         - template: `post/post_form.html`
         ![Image](https://github.com/user-attachments/assets/84cd2f7c-cba1-43bb-8c6c-3060aabb0ed7)
 
