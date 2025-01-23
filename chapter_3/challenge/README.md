@@ -1,3 +1,7 @@
+# 도전과제 개요
+- api만 구현했으며 템플릿은 구현하지 않음
+- postman으로 api동작 확인
+
 ### 1. DRF(Django Rest Framework)로 변환
 
 - User와 Post 앱을 API로 변환
@@ -422,5 +426,5 @@
         }
     }
     ```
-    - pgAdmin 에서 확인 가능능
+    - pgAdmin 에서 확인 가능
 ![Image](https://github.com/user-attachments/assets/62917616-61c0-42f7-b1a7-a0d0d03dafdf)
