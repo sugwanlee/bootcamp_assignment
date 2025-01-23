@@ -260,7 +260,7 @@
                 return Response(status=status.HTTP_403_FORBIDDEN)
 
     ```
-    - READ
+    - READ<br>
     ![Image](https://github.com/user-attachments/assets/f85269ab-9845-459a-884e-a15264fc3952)
     ![Image](https://github.com/user-attachments/assets/efaa0267-0223-47b9-a64b-54e58abf25b5)
 
