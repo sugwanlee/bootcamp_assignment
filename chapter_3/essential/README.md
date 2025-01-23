@@ -119,7 +119,7 @@
             return render(request, "user/profile.html", context)
         ```
 
-    - template: `user/profile.html`
+    - template: `user/profile.html`<br>
         ![Image](https://github.com/user-attachments/assets/7d949399-09e4-4dbf-b6d6-8046c34207ab)
 
 <br>
@@ -165,7 +165,7 @@
                 return render(request, "post/post_list.html", context)
             ```
 
-        - template: `post/post_list.html`
+        - template: `post/post_list.html`<br>
         ![Image](https://github.com/user-attachments/assets/2b639bb8-5be5-45a4-9ba3-99e0099f2c56)
 
         <br>
@@ -188,7 +188,7 @@
                 return render(request, "post/post_detail.html", context)
             ```
 
-        - template: `post/post_detail.html`
+        - template: `post/post_detail.html`<br>
         ![Image](https://github.com/user-attachments/assets/f832b66b-3e3a-45ae-a028-0aff63ddb3eb)
 
         <br>
@@ -224,7 +224,7 @@
                 return render(request, "post/post_form.html", context)
             ```
 
-        - template: `post/post_form.html`
+        - template: `post/post_form.html`<br>
         ![Image](https://github.com/user-attachments/assets/84cd2f7c-cba1-43bb-8c6c-3060aabb0ed7)
 
 
@@ -266,7 +266,7 @@
                     return render(request, "post/post_form.html", context)
             ```
 
-        - template: `post/post_form.html` (작성 기능과 공유)
+        - template: `post/post_form.html` (작성 기능과 공유)<br>
         ![Image](https://github.com/user-attachments/assets/18dd1ffd-c89f-4e25-9ead-570fcf3844f6)
 
 
@@ -293,5 +293,5 @@
                 return render(request, "post/post_confirm_delete.html", context)
             ```
         
-        - template: `post/post_confirm_delete.html`
+        - template: `post/post_confirm_delete.html`<br>
         ![Image](https://github.com/user-attachments/assets/23ff0a66-dfb3-469c-a4b1-19fc289838c9)
