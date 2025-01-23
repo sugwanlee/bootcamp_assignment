@@ -49,7 +49,7 @@
                 # 필요한 데이터를 담아서 응답
                 return render(request, "user/signup.html", context)
             ```
-        - template: `user/signup.html`
+        - template: `user/signup.html`<br>
 ![Image](https://github.com/user-attachments/assets/5c6316a5-74f4-487e-bb57-1ac9da0bad5d)
         
         
@@ -83,7 +83,7 @@
             return render(request, "user/login.html", context)
         ```
         
-    - template: `user/login.html`
+    - template: `user/login.html`<br>
 ![Image](https://github.com/user-attachments/assets/87ca29e0-bd88-4711-b53f-9bf463656066)
         
 

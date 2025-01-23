@@ -264,13 +264,13 @@
     ![Image](https://github.com/user-attachments/assets/f85269ab-9845-459a-884e-a15264fc3952)
     ![Image](https://github.com/user-attachments/assets/efaa0267-0223-47b9-a64b-54e58abf25b5)
 
-    - CREATE
+    - CREATE<br>
     ![Image](https://github.com/user-attachments/assets/465b0102-ac54-45d8-805b-4c937fc378bf)
 
-    - UPDATE
+    - UPDATE<br>
     ![Image](https://github.com/user-attachments/assets/ba43d39f-1450-41f6-aaa9-c2b20040697e)
 
-    - DELETE
+    - DELETE<br>
     ![Image](https://github.com/user-attachments/assets/7dcbbc2b-bb7e-466f-8aae-bcc49b36f872)
 
 
