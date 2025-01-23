@@ -93,6 +93,14 @@ DATABASES = {
     }
 }
 
+# SQLite3 용 코드
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 # Customuser를 기본 유저모델로 설정
 AUTH_USER_MODEL = "user.customuser"
 
