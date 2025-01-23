@@ -64,7 +64,7 @@ class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        # 현재 유저 정보로 개웃기네 ORM으로 현재 유저 qurryset 가져오기 
+        # ORM으로 현재 유저 qurryset 가져오기 
         profile = CustomUser.objects.get(pk=request.user.pk)
         # 시리얼라이저 객체 생성
         serializer = UserSerializer(profile)
@@ -72,7 +72,7 @@ class ProfileView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        # 현재 유저 정보로 개웃기네 ORM으로 현재 유저 qurryset 가져오기 
+        # ORM으로 현재 유저 qurryset 가져오기 
         profile = CustomUser.objects.get(pk=request.user.pk)
         # 시리얼라이저 부분수정 객체 생성
         serializer = UserSerializer(profile, data=request.data, partial=True)
